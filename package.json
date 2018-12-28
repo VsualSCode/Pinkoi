@@ -1,0 +1,29 @@
+{
+  "name": "gulp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.6.1",
+    "gulp-sass-china": "^3.1.0",
+    "gulp-webserver": "^0.9.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-sass-china": "^3.1.0",
+    "gulp-uglify": "^3.0.1",
+    "gulp-webserver": "^0.9.1",
+    "webpack": "^4.27.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

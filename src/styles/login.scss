@@ -1,0 +1,75 @@
+* {margin:0; padding:0;}
+img {border:0;}
+body{background:#d8d8d8;}
+ul li {list-style:none;}
+.box{width: 560px;height: 665px;background: white;position: absolute;left: 0;top: 0;bottom: 0;right: 0;margin:auto;overflow: hidden;}
+.box1{width: 100%;height: 277px;margin-top: 24px;margin-bottom: 24px;
+text-align: center;
+  img{width: 200px;height: 64px;}
+  
+  
+  
+  
+  .wb{width:300px;height: 140px;margin: 22px auto 0 auto;
+  position: relative;
+  img{width: 300px;height: 52px;
+    position: absolute;
+    right: 0;
+   }
+   a{
+       &:nth-child(1){
+       img{top:0;transition:all 0.5s;} }
+       &:nth-child(2){
+       img{top: 68px;transition:all 0.5s;} }      
+       &:nth-child(1){
+       img:hover{top:-8px;box-shadow: 0 5px 5px #e24d58;;} }
+        &:nth-child(2){
+       img:hover{top:60px;box-shadow: 0 5px 5px #65b331;} }    
+}
+}
+p{margin-top: 16px;}
+}
+
+
+
+
+
+
+
+.box2{width: 560px;height: 364px;background: #fbfbfa;text-align: center;
+padding-bottom: 32px;
+overflow: hidden;
+position: relative;
+p{margin-top: 24px;margin-bottom: 16px;
+    font-size: 20px;
+}
+}
+.tips{position: absolute;width: 250px;height: 30px;top: 0;left: 150px;text-align: center;color: red;}
+.box3{width: 300px;height: 102px;margin: auto;border: 1px solid #ccc;border-radius: 5px;
+li{width: 100%;height: 51px;line-height:51px;
+&:nth-child(1){border-bottom: 1px solid #ccc;
+  }
+  img{float: left;margin-top: 10px;margin-left: 10px;}
+}
+}
+.put{border:none;background: #fbfbfa; color:#bbb;font-size: 15px;outline: none;float: left;margin-top: 20px;}
+
+
+
+
+.box4{width: 300px;height: 46px;margin:16px auto 0 auto;
+position: relative;
+  input{width: 100%;height: 100%;background: #ff6299;border: none;color: white;font-size: 16px;position: absolute;
+  right: 0;transition:all 0.5s;top: 0;}
+  
+}
+.box4:hover input {top:-10px;box-shadow: 0 5px 5px #bd2c61;}
+
+.box5{width: 190px;height: 14px;margin:16px auto 0 auto;
+a{font-size: 14px;text-decoration:none;color: #bbb;}
+a:hover{text-decoration:underline;}
+}
+.box6{width: 540px;height: 38px;margin-top: 16px;
+a{color: #268ddf;text-decoration:none;}
+a:hover{text-decoration:underline;}
+}

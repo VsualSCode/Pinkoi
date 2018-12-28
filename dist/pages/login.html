@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" type="text/css" href="../styles/login.css" />
+</head>
+
+<body>
+	<div class="box">
+		<div class="box1">
+			<a href="https://localhost:8000/pages/1.html"><img src="../image/logo-v2_2.png" /></a>
+			<div class="wb">
+				<a href="#"><img src="../image/aa.png" /></a>
+				<a href="#">
+					<img src="../image/ab.png" />
+				</a>
+			</div>
+			<p><a href="https://localhost:8000/pages/huodong.html">加入会员 72 小时内首次购物享 95 折优惠！</a></p>
+		</div>
+
+		<div class="box2">
+			<p>或使用 Pinkoi 帐号登录</p>
+			<div class="tips"></div>
+			<ul class="box3">
+				<li>
+					<img src="../image/ac.png" />
+					<input type="text" value="账号" onfocus="this.value==='账号';this.value=''" class="put" id="user" />
+				</li>
+				<li>
+					<img src="../image/333.png" />
+					<input type="text" value="密码" onfocus="this.value==='密码';this.value=''" class="put" id="pass" />
+				</li>
+			</ul>
+
+			<div class="box4">
+				<a href="https://localhost:8000/pages/login.js">登录</a><input type="submit" name="login_btn" value="登录" id="login_btn" />
+			</div>
+			<div class="box5">
+				<a href="#">忘记密码</a> | <a href="#">重寄认证信</a>
+			</div>
+			<div class="box6">
+				还不是会员吗？
+				<a href="../pages/denglu.html">立刻注册新帐号</a>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script src="../scripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../scripts/login.js" type="text/javascript" charset="utf-8"></script>
+<script src="../scripts/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- 
+<script type="text/javascript">
+	$(".box").validate()
+
+</script> -->
+
+<script type="text/javascript">
+    $("#login_btn").click(function(){
+		$.ajax({
+			url:"wss://localhost:35729/livereload",
+			data:{
+				user:$("#user").val(),
+				pass:$("#pass").val(),
+				
+			},
+			success:function(res){
+				console.log(res);
+			}
+		})
+	})
+</script>
+
+</html>

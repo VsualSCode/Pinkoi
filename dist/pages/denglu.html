@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>注册个人帐号</title>
+
+	<link rel="stylesheet" type="text/css" href="../styles/denglu.css" />
+	<style type="text/css">
+		.error {
+			border-color: red;
+		}
+
+		.valid {
+			border-color: green;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<div class="box1">
+			<a href="https://localhost:8000/pages/1.html"><img src="../image/logo-v2_2.png" /></a>
+		</div>
+
+		<div class="box2">
+			<span>注册个人帐号</span>
+			<div class="tips"></div>
+			<ul class="box3" action="jquery.validate.messages_zh.js" method="get">
+				<li>
+					<img src="../image/ac.png" />
+					<input type="text" value="账号" onfocus="this.value==='账号';this.value=''" class="put" id="user" />
+
+				</li>
+				<li>
+					<img src="../image/333.png" />
+					<input type="text" value="密码" onfocus="this.value==='密码';this.value=''" class="put" id="pass" />
+				</li>
+				<li><img src="../image/32.png" />
+					<input type="text" value="Email" onfocus="this.value==='Email';this.value=''" class="put" id="pass2" /></li>
+			</ul>
+			<div class="box4">
+				按下注册钮的同时，表示您已详阅我们的<a href="#">资料使用政策与使用条款</a>，同意使用 Pinkoi 所提供的服务并订阅电子报。
+			</div>
+
+
+			<div class="box5">
+				<a href="https://localhost:8000/pages/login.html"></a><input type="submit" name="sign_btn" value="注册" id="sign_btn" />
+			</div>
+
+			<div class="box6">
+				已经有账号了？
+				<a href="../pages/login.html">马上登录</a>
+			</div>
+
+		</div>
+	</div>
+</body>
+<script src="../scripts/libs/cookie.js"  type="text/javascript" charset="utf-8"></script>
+<script src="../scripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="../scripts/register.js" type="text/javascript" charset="utf-8"></script>
+<script src="../scripts/libs/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+<script src="../scripts/libs/jquery.validate.messages_zh.js" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".box").validate()
+
+</script>
+
+<!-- <script type="text/javascript">
+    $("#sign_btn").click(function(){
+		$.ajax({
+			url:"https://localhost:8000/passport.baidu.com",
+			data:{
+				user:$("#user").val(),
+				pass:$("#pass").val(),
+				pass2:$("#pass2").val()
+			},
+			success:function(res){
+				console.log(res);
+			}
+		})
+	})
+</script> -->
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<style>
+			*{margin: 0;padding: 0;}
+			img {border:0;}
+			a {color:#626262; text-decoration:none;}
+			body{height: 100%;width: 100%;position: relative;}
+			.layout{width: 940px;overflow: hidden;margin: 0 auto;}
+			.box{width: 100%;height: 105px;border-bottom: 1px solid #ebebeb;overflow: hidden;}
+			.box1{height: 105px;margin-top: 26px;}
+			.box1 a:nth-child(1) img{width: 128px;height: 44px;float: left;margin-right: 36px;}
+			.box1 img:nth-child(2){float: left;}
+			.box2{width: 100%;height: 100px;background: #fbfafa;margin-top: 630px;overflow: hidden;}
+			.box3{height: 79px;margin-top: 28px;line-height: 28px;}
+			.box3 a:nth-child(1) img{width: 61px;height: 27px;float: left;margin-right: 14px;}
+			.box3 span:nth-child(2){float: left;font-weight: 700;color: black;font-size: 12px;}
+			.box3 span:nth-child(3){float: right;color: #b5b7b9;font-size: 12px;}
+			.box4{width: 1200px;margin: 50px auto;}
+
+			.box6{width:98px;height: 66px;}
+			.box7 td{text-align: center;}
+			.box7 td:nth-child(4){color: #009081;font-weight: 800;}
+			.box8 td {text-align: center;}
+			.box8 td:nth-child(4){text-align: left;}
+			
+			#ptn{width: 50px;}
+			h2{margin: 30px 0;text-indent: 30px;}
+			em{display: block;width: 100px;line-height: 30px;text-align: center;background: #d63f7b;border-radius: 6px;margin: 0 auto;margin-top: 10px;font-style: normal;cursor: pointer;color: #fff;}
+			input[type="number"]{width:50px}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="box1 layout">
+			<a href="https://localhost:8000/pages/1.html"><img src="../image/logo-v2_2.png" /></a>
+			<img src="../image/ha.png" />
+		</div>
+		</div>
+		
+		<div class="box4 ">
+			<table border="1" cellspacing="0" width="1200" align="center">
+			<thead>
+				<tr>
+					<th></th>
+					<th width="100">商品图片</th>
+					<th>名字</th>
+					<th>价格</th>
+					<th width="120">数量</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+			<thead>
+				<tr class="box8">
+					<td colspan="2"><input type="checkbox" name="" id="" value="" />全部选中</td>
+					<td align = "right">总价：</td>
+					<td class="dd"></td>
+					<td>总数量:<input type="text" id="ptn" value="0"/> </td>
+					<td><em id="zn">全部删除</em></td>
+					
+				</tr>
+			</thead>
+		</table>
+	</body>
+	<script src="../scripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../scripts/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+
+		$.ajax({
+			url: "/abcdefg",
+			success: function (data) {
+				console.log(data);
+			}
+		})
+	</script>
+
+	<script type="text/javascript">
+		
+		class Cart{
+		
+			constructor(options){
+			
+				this.url = options.url;
+				this.body = options.tbody;
+			    
+				this.load()
+			}
+			load(){
+				var that = this;
+				$.ajax({
+					url:this.url,
+					success:function(res){
+						that.res = res
+						that.getCookie()
+					}
+				})
+			}
+			getCookie(){
+				this.goods = JSON.parse($.cookie("goods"))
+				this.display()
+				this.allnum()
+				this.money()
+			}
+			display(){
+				
+				var str = ""
+				for(var i=0;i<this.res.length;i++){
+					for(var j=0;j<this.goods.length;j++){
+						if(this.res[i].goodsId == this.goods[j].id){
+						
+							str += `<tr class="box7">
+										<td><input type="checkbox"></td>
+										<td><img src="${this.res[i].src}" class="box6"/></td>
+										<td>${this.res[i].name}</td>
+										<td>${this.res[i].price}</td>
+										<td><input type="number" value="${this.goods[j].num}"></td>
+										<td><em data-index="${this.res[i].goodsId}">删除</em></td>
+									</tr>`
+						}
+					}
+				}
+				this.body.html(str)
+				this.init()
+			}
+//			以下是将删除和修改的方法合成了一个
+			init(){
+				var that = this;
+//				删除事件
+				this.body.on("click","em",function(){
+					var id = $(this).attr("data-index")
+					$(this).parent().parent().remove()
+					that.changeCookie(id,function(i){
+						that.goods.splice(i,1)
+					})
+					this.allnum()
+				})
+				$("#zn").on("click",function(){
+					that.goods=[];
+					that.goods.length=0;
+					 $.cookie("goods",JSON.stringify(that.goods))
+				     that.display()
+				})
+//				修改事件
+				this.body.on("input","input",function(){
+					var num = $(this).val();
+					var id = $(this).parent().next("td").children("em").attr("data-index");
+					that.changeCookie(id,function(i){
+						that.goods[i].num = num
+					})
+				})
+			}
+			changeCookie(id,callback){
+				for(var i=0;i<this.goods.length;i++){
+					if(this.goods[i].id == id){
+						callback(i)
+					}
+				}
+				$.cookie("goods",JSON.stringify(this.goods))
+			}
+			allnum(){
+				let num=0;
+				for(let i=0;i<this.goods.length;i++)
+				{
+					num+=parseInt(this.goods[i].num)
+				}
+				$("#ptn").val(num)
+			}
+			
+			money(){
+				let n=0;
+				for(let s=0;s<this.goods.length;s++)
+				{
+ n+=parseInt (this.res[s].price.split("").splice(4,6).join("")*this.goods[s].num)
+				}
+				$(".dd").text(n);
+				
+			}
+//			
+		}
+		
+		
+		new Cart({
+			url:"https://localhost:8000/scripts/tu.json",
+			tbody:$("tbody")
+			
+		})
+		
+
+	</script>
+		</div>
+		
+		
+		
+		
+		
+		<div class="box2">
+			<div class="box3 layout">
+				<a href="#"><img src="../image/logo-v2_2.png" /></a>
+				<span>用好设计实现美感生活</span>
+				<span>© 2018 Pinkoi. All Rights Reserved.</span>
+			</div>
+		</div>
+	</body>
+</html>
